@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Dominio Combat Club</title>
+    <script>
+      // GitHub Pages SPA redirect: converts the path to a hash-based URL
+      var path = window.location.pathname;
+      var repo = '/DominioCombatClub';
+      if (path.startsWith(repo)) {
+        path = path.slice(repo.length);
+      }
+      window.location.replace(
+        window.location.origin + repo + '/#' + (path || '/')
+      );
+    </script>
+  </head>
+  <body></body>
+</html>
