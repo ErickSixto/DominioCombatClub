@@ -1,8 +1,9 @@
 import { MessageCircle } from "lucide-react";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { useLanguage } from "@/context/LanguageContext";
+import { AnimateIn } from "@/hooks/useInView";
 
-const WHATSAPP_URL = "https://wa.me/529992570757?text=Hola%2C%20quiero%20agendar%20mi%20clase%20muestra%20gratis.%20%C2%BFQu%C3%A9%20horarios%20tienen%20hoy%3F";
+const WHATSAPP_URL = "https://wa.me/529996472315?text=Hola%2C%20quiero%20agendar%20mi%20clase%20muestra%20gratis.%20%C2%BFQu%C3%A9%20horarios%20tienen%20hoy%3F";
 
 const faqs = {
   es: [
@@ -13,7 +14,7 @@ const faqs = {
     { question: "Como se paga la membresia?", answer: "La membresia se paga mensualmente. Aceptamos efectivo y transferencia bancaria. El pago se realiza al inicio de cada mes. No hay contratos de permanencia, puedes cancelar cuando quieras." },
     { question: "Hay estacionamiento? Como llego?", answer: "Si, hay estacionamiento disponible cerca del gimnasio. Estamos ubicados en C. 32A 514, Maya, 97134 Merida. Puedes encontrarnos facilmente en Google Maps buscando 'Dominio Combat Club'. Si necesitas indicaciones, escribenos por WhatsApp." },
     { question: "Que edades aceptan?", answer: "Aceptamos jovenes y adultos. La mayoria de nuestros miembros tienen entre 18 y 45 anos, pero recibimos a cualquier persona que quiera entrenar con disciplina y respeto." },
-    { question: "Cuales son los planes disponibles?", answer: "Tenemos Mensualidad Boxeo por $850 MXN/mes (acceso a todas las clases de boxeo) y Artes Marciales + Boxeo por $1,800 MXN/mes (acceso a todas las disciplinas). Tambien ofrecemos clases privadas desde $550 MXN/hora." },
+    { question: "Cuales son los paquetes disponibles?", answer: "Tenemos 3 paquetes: 1 Disciplina por $850 MXN/mes, 2 Disciplinas por $1,300 MXN/mes, y 3 Disciplinas por $1,600 MXN/mes. La inscripcion es de $200 MXN e incluye playera de uniforme. Tambien ofrecemos clases privadas desde $550 MXN/hora." },
   ],
   en: [
     { question: "Can I train if I'm a beginner?", answer: "Absolutely. Most of our members started with no prior experience. Our classes are designed for all levels and instructors make sure you feel comfortable and safe from day one. Your first trial class is free." },
@@ -23,7 +24,7 @@ const faqs = {
     { question: "How do I pay for membership?", answer: "Membership is paid monthly. We accept cash and bank transfers. Payment is made at the beginning of each month. There are no lock-in contracts, you can cancel anytime." },
     { question: "Is there parking? How do I get there?", answer: "Yes, there's parking available near the gym. We're located at C. 32A 514, Maya, 97134 Merida. You can easily find us on Google Maps by searching 'Dominio Combat Club'. For directions, message us on WhatsApp." },
     { question: "What ages do you accept?", answer: "We accept teens and adults. Most of our members are between 18 and 45, but we welcome anyone who wants to train with discipline and respect." },
-    { question: "What plans are available?", answer: "We have Boxing Monthly for $850 MXN/month (access to all boxing classes) and Martial Arts + Boxing for $1,800 MXN/month (access to all disciplines). We also offer private classes from $550 MXN/hour." },
+    { question: "What packages are available?", answer: "We have 3 packages: 1 Discipline for $850 MXN/month, 2 Disciplines for $1,300 MXN/month, and 3 Disciplines for $1,600 MXN/month. Registration is $200 MXN and includes an official uniform t-shirt. We also offer private classes from $550 MXN/hour." },
   ],
 };
 
@@ -40,30 +41,39 @@ export default function FAQPage() {
     <div data-testid="faq-page" className="pt-20">
       <section className="py-16 md:py-24 bg-[#0B0B0D]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <span className="font-heading text-sm uppercase tracking-[0.2em] text-[#C9A24A]">{tx.label}</span>
-          <h1 data-testid="faq-title" className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-[#F4F3EF] mt-3">{tx.title}</h1>
-          <p className="mt-4 text-[#B9B4A8] text-base md:text-lg max-w-xl">{tx.sub}</p>
+          <AnimateIn>
+            <span className="font-heading text-sm uppercase tracking-[0.2em] text-[#C9A24A]">{tx.label}</span>
+            <h1 data-testid="faq-title" className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-[#F4F3EF] mt-3">{tx.title}</h1>
+            <p className="mt-4 text-[#B9B4A8] text-base md:text-lg max-w-xl">{tx.sub}</p>
+          </AnimateIn>
         </div>
       </section>
       <section className="py-8 md:py-16 bg-[#0B0B0D]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <Accordion type="single" collapsible className="space-y-2">
             {faqList.map((faq, i) => (
-              <AccordionItem key={i} value={`faq-${i}`} data-testid={`faq-item-${i}`}
-                className="bg-[#2B2D31] border border-white/5 px-6 hover:border-white/10 transition-colors">
-                <AccordionTrigger className="font-heading text-base md:text-lg uppercase tracking-wide text-[#F4F3EF] hover:no-underline py-5">{faq.question}</AccordionTrigger>
-                <AccordionContent className="text-[#B9B4A8] text-sm leading-relaxed pb-5">{faq.answer}</AccordionContent>
-              </AccordionItem>
+              <AnimateIn key={i} delay={i * 80} className="block">
+                <AccordionItem value={`faq-${i}`} data-testid={`faq-item-${i}`}
+                  className="glass-card border-b-0 rounded-sm px-6 hover:border-[#C9A24A]/20 transition-all duration-300">
+                  <AccordionTrigger className="font-heading text-base md:text-lg uppercase tracking-wide text-[#F4F3EF] hover:no-underline hover:text-[#C9A24A] py-5 transition-colors">{faq.question}</AccordionTrigger>
+                  <AccordionContent className="text-[#B9B4A8] text-sm leading-relaxed pb-5">{faq.answer}</AccordionContent>
+                </AccordionItem>
+              </AnimateIn>
             ))}
           </Accordion>
         </div>
       </section>
+      <div className="bg-[#0B0B0D] px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto">
+          <div className="section-divider" />
+        </div>
+      </div>
       <section className="py-16 md:py-24 bg-[#1A1B1E] text-center">
         <div className="max-w-2xl mx-auto px-4">
           <h2 className="font-heading text-2xl md:text-4xl font-bold uppercase tracking-tight text-[#F4F3EF]">{tx.ctaTitle}</h2>
           <p className="mt-4 text-[#B9B4A8] text-sm">{tx.ctaSub}</p>
           <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" data-testid="faq-cta"
-            className="mt-8 inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-sm transition-all duration-300 hover:scale-105">
+            className="btn-glow relative z-10 mt-8 inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-sm transition-all duration-300 hover:scale-105">
             <MessageCircle className="w-5 h-5" />{tx.ctaBtn}
           </a>
           <p className="mt-4 text-[#B9B4A8]/60 text-xs">{tx.ctaNote}</p>

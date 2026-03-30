@@ -1,7 +1,8 @@
 import { MessageCircle, Phone, Mail, Instagram, MapPin, Clock, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { AnimateIn } from "@/hooks/useInView";
 
-const WHATSAPP_URL = "https://wa.me/529992570757?text=Hola%2C%20quiero%20agendar%20mi%20clase%20muestra%20gratis.%20%C2%BFQu%C3%A9%20horarios%20tienen%20hoy%3F";
+const WHATSAPP_URL = "https://wa.me/529996472315?text=Hola%2C%20quiero%20agendar%20mi%20clase%20muestra%20gratis.%20%C2%BFQu%C3%A9%20horarios%20tienen%20hoy%3F";
 
 const txt = {
   es: {
@@ -27,60 +28,75 @@ export default function ContactoPage() {
     <div data-testid="contacto-page" className="pt-20">
       <section className="py-16 md:py-24 bg-[#0B0B0D]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <span className="font-heading text-sm uppercase tracking-[0.2em] text-[#C9A24A]">{tx.label}</span>
-          <h1 data-testid="contacto-title" className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-[#F4F3EF] mt-3">{tx.title}</h1>
-          <p className="mt-4 text-[#B9B4A8] text-base md:text-lg max-w-xl">{tx.sub}</p>
+          <AnimateIn>
+            <span className="font-heading text-sm uppercase tracking-[0.2em] text-[#C9A24A]">{tx.label}</span>
+            <h1 data-testid="contacto-title" className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-[#F4F3EF] mt-3">{tx.title}</h1>
+            <p className="mt-4 text-[#B9B4A8] text-base md:text-lg max-w-xl">{tx.sub}</p>
+          </AnimateIn>
         </div>
       </section>
+      <div className="bg-[#0B0B0D] px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="section-divider" />
+        </div>
+      </div>
       <section className="py-12 md:py-20 bg-[#0B0B0D]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
             <div className="space-y-6">
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" data-testid="contact-whatsapp"
-                className="block bg-[#25D366]/10 border border-[#25D366]/20 hover:border-[#25D366]/40 p-6 md:p-8 transition-all duration-300 group">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-[#25D366] flex items-center justify-center shrink-0"><MessageCircle className="w-6 h-6 text-white" /></div>
-                  <div>
-                    <p className="font-heading text-lg uppercase font-bold text-[#F4F3EF] group-hover:text-[#25D366] transition-colors">WhatsApp</p>
-                    <p className="text-[#B9B4A8] text-sm">+52 999 257 0757</p>
-                    <p className="text-[#25D366] text-xs mt-1 font-semibold uppercase tracking-wider">{tx.waNote}</p>
+              <AnimateIn delay={0}>
+                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" data-testid="contact-whatsapp"
+                  className="block bg-[#25D366]/10 border border-[#25D366]/20 hover:border-[#25D366]/40 p-6 md:p-8 transition-all duration-300 group">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-[#25D366] flex items-center justify-center shrink-0"><MessageCircle className="w-6 h-6 text-white" /></div>
+                    <div>
+                      <p className="font-heading text-lg uppercase font-bold text-[#F4F3EF] group-hover:text-[#25D366] transition-colors">WhatsApp</p>
+                      <p className="text-[#B9B4A8] text-sm">+52 999 647 2315</p>
+                      <p className="text-[#25D366] text-xs mt-1 font-semibold uppercase tracking-wider">{tx.waNote}</p>
+                    </div>
+                    <ExternalLink className="w-5 h-5 text-[#B9B4A8] ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
-                  <ExternalLink className="w-5 h-5 text-[#B9B4A8] ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-              </a>
-              <a href="tel:+529992570757" data-testid="contact-phone"
-                className="block bg-[#2B2D31] border border-white/5 hover:border-white/15 p-6 md:p-8 transition-all duration-300 group">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-[#2B2D31] border border-white/10 flex items-center justify-center shrink-0"><Phone className="w-5 h-5 text-[#F4F3EF]" /></div>
-                  <div>
-                    <p className="font-heading text-lg uppercase font-bold text-[#F4F3EF]">{lang === 'es' ? 'Telefono' : 'Phone'}</p>
-                    <p className="text-[#B9B4A8] text-sm">+52 999 257 0757</p>
+                </a>
+              </AnimateIn>
+              <AnimateIn delay={80}>
+                <a href="tel:+529996472315" data-testid="contact-phone"
+                  className="block glass-card glass-card-hover border border-white/5 p-6 md:p-8 transition-all duration-300 group">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-[#2B2D31] border border-white/10 flex items-center justify-center shrink-0"><Phone className="w-5 h-5 text-[#F4F3EF]" /></div>
+                    <div>
+                      <p className="font-heading text-lg uppercase font-bold text-[#F4F3EF]">{lang === 'es' ? 'Telefono' : 'Phone'}</p>
+                      <p className="text-[#B9B4A8] text-sm">+52 999 647 2315</p>
+                    </div>
                   </div>
-                </div>
-              </a>
-              <a href="mailto:dominiocombatclub@gmail.com" data-testid="contact-email"
-                className="block bg-[#2B2D31] border border-white/5 hover:border-white/15 p-6 md:p-8 transition-all duration-300 group">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-[#2B2D31] border border-white/10 flex items-center justify-center shrink-0"><Mail className="w-5 h-5 text-[#F4F3EF]" /></div>
-                  <div>
-                    <p className="font-heading text-lg uppercase font-bold text-[#F4F3EF]">Email</p>
-                    <p className="text-[#B9B4A8] text-sm">dominiocombatclub@gmail.com</p>
+                </a>
+              </AnimateIn>
+              <AnimateIn delay={160}>
+                <a href="mailto:dominiocombatclub@gmail.com" data-testid="contact-email"
+                  className="block glass-card glass-card-hover border border-white/5 p-6 md:p-8 transition-all duration-300 group">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-[#2B2D31] border border-white/10 flex items-center justify-center shrink-0"><Mail className="w-5 h-5 text-[#F4F3EF]" /></div>
+                    <div>
+                      <p className="font-heading text-lg uppercase font-bold text-[#F4F3EF]">Email</p>
+                      <p className="text-[#B9B4A8] text-sm">dominiocombatclub@gmail.com</p>
+                    </div>
                   </div>
-                </div>
-              </a>
-              <a href="https://www.instagram.com/dominio_combatclub/" target="_blank" rel="noopener noreferrer" data-testid="contact-instagram"
-                className="block bg-[#2B2D31] border border-white/5 hover:border-white/15 p-6 md:p-8 transition-all duration-300 group">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-[#2B2D31] border border-white/10 flex items-center justify-center shrink-0"><Instagram className="w-5 h-5 text-[#F4F3EF]" /></div>
-                  <div>
-                    <p className="font-heading text-lg uppercase font-bold text-[#F4F3EF]">Instagram</p>
-                    <p className="text-[#B9B4A8] text-sm">@Dominio_CombatClub</p>
+                </a>
+              </AnimateIn>
+              <AnimateIn delay={240}>
+                <a href="https://www.instagram.com/dominio_combatclub/" target="_blank" rel="noopener noreferrer" data-testid="contact-instagram"
+                  className="block glass-card glass-card-hover border border-white/5 p-6 md:p-8 transition-all duration-300 group">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-[#2B2D31] border border-white/10 flex items-center justify-center shrink-0"><Instagram className="w-5 h-5 text-[#F4F3EF]" /></div>
+                    <div>
+                      <p className="font-heading text-lg uppercase font-bold text-[#F4F3EF]">Instagram</p>
+                      <p className="text-[#B9B4A8] text-sm">@Dominio_CombatClub</p>
+                    </div>
+                    <ExternalLink className="w-5 h-5 text-[#B9B4A8] ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
-                  <ExternalLink className="w-5 h-5 text-[#B9B4A8] ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-              </a>
+                </a>
+              </AnimateIn>
             </div>
-            <div>
+            <AnimateIn from="right" className="min-w-0">
               <div className="mb-6">
                 <h2 className="font-heading text-2xl md:text-3xl uppercase font-bold text-[#F4F3EF]">{tx.locTitle}</h2>
                 <div className="accent-line mt-3" />
@@ -110,16 +126,21 @@ export default function ContactoPage() {
                 className="mt-4 inline-flex items-center gap-2 text-[#C9A24A] hover:text-[#F4F3EF] font-bold text-sm uppercase tracking-wider transition-colors">
                 <MapPin className="w-4 h-4" />{tx.mapLink}<ExternalLink className="w-3.5 h-3.5" />
               </a>
-            </div>
+            </AnimateIn>
           </div>
         </div>
       </section>
+      <div className="bg-[#0B0B0D] px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="section-divider" />
+        </div>
+      </div>
       <section className="py-16 md:py-24 bg-[#1A1B1E] text-center">
         <div className="max-w-2xl mx-auto px-4">
           <h2 className="font-heading text-2xl md:text-4xl font-bold uppercase tracking-tight text-[#F4F3EF]">{tx.ctaTitle}</h2>
           <p className="mt-4 text-[#B9B4A8] text-sm">{tx.ctaSub}</p>
           <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" data-testid="contacto-cta"
-            className="mt-8 inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-sm transition-all duration-300 hover:scale-105">
+            className="btn-glow relative z-10 mt-8 inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-sm transition-all duration-300 hover:scale-105">
             <MessageCircle className="w-5 h-5" />{tx.ctaBtn}
           </a>
         </div>

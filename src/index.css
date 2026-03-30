@@ -80,3 +80,24 @@ html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
 }
+
+/* Focus styles for keyboard navigation */
+@layer base {
+    *:focus-visible {
+        @apply outline-2 outline-offset-2 outline-[#C9A24A] rounded-sm;
+    }
+    a, button, [role="button"], input, select, textarea, summary,
+    [tabindex]:not([tabindex="-1"]) {
+        @apply cursor-pointer;
+    }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

@@ -4,7 +4,7 @@ import { Menu, X, MessageCircle, Globe } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { useLanguage } from "@/context/LanguageContext";
 
-const WHATSAPP_URL = "https://wa.me/529992570757?text=Hola%2C%20quiero%20agendar%20mi%20clase%20muestra%20gratis.%20%C2%BFQu%C3%A9%20horarios%20tienen%20hoy%3F";
+const WHATSAPP_URL = "https://wa.me/529996472315?text=Hola%2C%20quiero%20agendar%20mi%20clase%20muestra%20gratis.%20%C2%BFQu%C3%A9%20horarios%20tienen%20hoy%3F";
 const LOGO_URL = "https://customer-assets.emergentagent.com/job_combat-merida/artifacts/onbyxgb2_image.png";
 
 const navLinks = [
@@ -35,20 +35,24 @@ export const Header = () => {
   return (
     <header
       data-testid="main-header"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      role="banner"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out relative ${
         scrolled
-          ? "bg-[#0B0B0D]/95 backdrop-blur-md border-b border-white/5"
+          ? "bg-[#0B0B0D]/80 backdrop-blur-xl after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-white/15 after:to-transparent"
           : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
+        <div
+          className={`flex items-center justify-between transition-[height] duration-300 ease-out ${
+            scrolled ? "h-16" : "h-20"
+          }`}
+        >
           <Link to="/" className="flex items-center gap-3" data-testid="logo-link">
             <img
               src={LOGO_URL}
               alt="Dominio Combat Club"
-              className="h-10 w-10 md:h-12 md:w-12 rounded-full"
+              className="h-10 w-10 md:h-12 md:w-12 rounded-full hover:scale-105 transition-transform"
             />
             <div className="hidden sm:block">
               <span className="font-heading text-lg md:text-xl font-bold uppercase tracking-wider text-[#F4F3EF]">
@@ -60,16 +64,15 @@ export const Header = () => {
             </div>
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-8" data-testid="desktop-nav">
+          <nav className="hidden lg:flex items-center gap-8" data-testid="desktop-nav" aria-label="Main navigation">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 to={link.href}
                 data-testid={`nav-${link.label.es.toLowerCase()}`}
-                className={`font-heading text-sm uppercase tracking-wider transition-colors duration-200 ${
+                className={`nav-link-underline font-heading text-sm uppercase tracking-wider transition-colors duration-200 ${
                   location.pathname === link.href
-                    ? "text-[#C9A24A]"
+                    ? "active text-[#C9A24A]"
                     : "text-[#B9B4A8] hover:text-[#F4F3EF]"
                 }`}
               >
@@ -78,7 +81,6 @@ export const Header = () => {
             ))}
           </nav>
 
-          {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <button
               onClick={toggleLang}
@@ -94,14 +96,13 @@ export const Header = () => {
               target="_blank"
               rel="noopener noreferrer"
               data-testid="header-whatsapp-cta"
-              className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold text-sm uppercase tracking-wider px-5 py-2.5 rounded-sm transition-all duration-300 hover:scale-105"
+              className="btn-glow inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold text-sm uppercase tracking-wider px-5 py-2.5 rounded-sm transition-all duration-300 hover:scale-105"
             >
               <MessageCircle className="w-4 h-4" />
               {lang === 'es' ? 'Agendar por WhatsApp' : 'Book via WhatsApp'}
             </a>
           </div>
 
-          {/* Mobile Menu */}
           <div className="flex items-center gap-2 lg:hidden">
             <button
               onClick={toggleLang}
@@ -135,12 +136,13 @@ export const Header = () => {
               <SheetContent side="right" className="bg-[#0B0B0D] border-[#2B2D31] w-72">
                 <SheetTitle className="sr-only">Menu de navegacion</SheetTitle>
                 <div className="flex flex-col gap-1 mt-8">
-                  {navLinks.map((link) => (
+                  {navLinks.map((link, index) => (
                     <Link
                       key={link.href}
                       to={link.href}
                       data-testid={`mobile-nav-${link.label.es.toLowerCase()}`}
-                      className={`font-heading text-lg uppercase tracking-wider py-3 px-2 transition-colors border-b border-white/5 ${
+                      style={{ animationDelay: `${index * 55}ms` }}
+                      className={`font-heading text-lg uppercase tracking-wider py-3 px-2 transition-colors border-b border-white/5 animate-in fade-in-0 slide-in-from-right-3 duration-300 fill-mode-forwards ${
                         location.pathname === link.href
                           ? "text-[#C9A24A]"
                           : "text-[#B9B4A8] hover:text-[#F4F3EF]"
@@ -154,7 +156,8 @@ export const Header = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     data-testid="mobile-sheet-whatsapp"
-                    className="mt-6 inline-flex items-center justify-center gap-2 bg-[#25D366] text-white font-bold text-sm uppercase tracking-wider px-5 py-3 rounded-sm"
+                    style={{ animationDelay: `${navLinks.length * 55}ms` }}
+                    className="mt-6 inline-flex items-center justify-center gap-2 bg-[#25D366] text-white font-bold text-sm uppercase tracking-wider px-5 py-3 rounded-sm animate-in fade-in-0 slide-in-from-right-3 duration-300 fill-mode-forwards"
                   >
                     <MessageCircle className="w-4 h-4" />
                     {lang === 'es' ? 'Agendar Clase Gratis' : 'Book Free Class'}
