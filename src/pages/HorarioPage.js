@@ -128,17 +128,6 @@ const txt = {
   },
 };
 
-function SectionDivider() {
-  return (
-    <div
-      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-0"
-      aria-hidden="true"
-    >
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-[#C9A24A]/25 to-transparent" />
-    </div>
-  );
-}
-
 export default function HorarioPage() {
   const { lang } = useLanguage();
   const days = Object.keys(schedule);
@@ -149,7 +138,6 @@ export default function HorarioPage() {
 
   const getDisciplineName = (d) => typeof d === 'object' ? d[lang] : d;
 
-  // Build time slots for desktop table
   const allTimes = [...new Set(days.flatMap(day => schedule[day].map(c => c.time)))].sort((a, b) => {
     const parse = (t) => { const [h, m] = t.replace(/[APM ]/g, '').split(':').map(Number); const isPM = t.includes('PM'); return (isPM && h !== 12 ? h + 12 : h) * 60 + (m || 0); };
     return parse(a) - parse(b);
@@ -157,7 +145,7 @@ export default function HorarioPage() {
 
   return (
     <div data-testid="horario-page" className="pt-20">
-      <section className="py-16 md:py-24 bg-[#0B0B0D]">
+      <section className="bg-dark-warm py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimateIn>
             <span className="font-heading text-sm uppercase tracking-[0.2em] text-[#C9A24A] block">
@@ -177,9 +165,7 @@ export default function HorarioPage() {
         </div>
       </section>
 
-      <SectionDivider />
-
-      <section className="py-8 md:py-16 bg-[#0B0B0D]">
+      <section className="bg-dark-rich py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-4 md:hidden">
           <Tabs defaultValue="lunes">
             <TabsList className="w-full h-auto p-1.5 grid grid-cols-5 rounded-xl border border-white/10 bg-white/[0.04] backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]">
@@ -224,7 +210,7 @@ export default function HorarioPage() {
           <div className="overflow-x-auto rounded-xl border border-white/[0.06]">
             <table data-testid="schedule-table" className="w-full border-collapse">
               <thead>
-                <tr className="glass-card border-0 rounded-t-xl">
+                <tr className="bg-white/[0.03]">
                   <th className="text-left font-heading text-sm uppercase tracking-wider text-[#C9A24A] py-4 pr-6 pl-4 w-32 border-b border-white/10">
                     {lang === 'es' ? 'Horario' : 'Time'}
                   </th>
@@ -255,7 +241,7 @@ export default function HorarioPage() {
                               {classes.map((cls, i) => (
                                 <div
                                   key={i}
-                                  className={`schedule-glass schedule-cell px-3 py-1.5 border-l-2 rounded-sm ${typeColors[cls.type]}`}
+                                  className={`schedule-glass px-3 py-1.5 border-l-2 rounded-sm ${typeColors[cls.type]}`}
                                 >
                                   <span className="font-heading text-xs uppercase font-semibold text-[#F4F3EF] block">{getDisciplineName(cls.discipline)}</span>
                                 </div>
@@ -301,26 +287,24 @@ export default function HorarioPage() {
         </div>
       </section>
 
-      <SectionDivider />
-
-      <section className="py-12 md:py-16 bg-[#1A1B1E]">
+      <section className="bg-cream py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <AnimateIn>
-              <div className="glass-card glass-card-hover flex gap-3 p-6 rounded-xl">
+              <div className="card-light flex gap-3 p-6 rounded-xl">
                 <Info className="w-5 h-5 shrink-0 text-[#C9A24A] mt-0.5" />
                 <div>
-                  <h3 className="font-heading text-sm uppercase tracking-wider font-semibold text-[#F4F3EF] mb-1">{tx.groupTitle}</h3>
-                  <p className="text-[#B9B4A8] text-sm leading-relaxed">{tx.groupText}</p>
+                  <h3 className="font-heading text-sm uppercase tracking-wider font-semibold text-[#1A1720] mb-1">{tx.groupTitle}</h3>
+                  <p className="text-[#3A3740] text-sm leading-relaxed">{tx.groupText}</p>
                 </div>
               </div>
             </AnimateIn>
             <AnimateIn delay={120}>
-              <div className="glass-card glass-card-hover flex gap-3 p-6 rounded-xl">
+              <div className="card-light flex gap-3 p-6 rounded-xl">
                 <Info className="w-5 h-5 shrink-0 text-[#C9A24A] mt-0.5" />
                 <div>
-                  <h3 className="font-heading text-sm uppercase tracking-wider font-semibold text-[#F4F3EF] mb-1">{tx.privateTitle}</h3>
-                  <p className="text-[#B9B4A8] text-sm leading-relaxed">{tx.privateText}</p>
+                  <h3 className="font-heading text-sm uppercase tracking-wider font-semibold text-[#1A1720] mb-1">{tx.privateTitle}</h3>
+                  <p className="text-[#3A3740] text-sm leading-relaxed">{tx.privateText}</p>
                 </div>
               </div>
             </AnimateIn>
@@ -328,9 +312,7 @@ export default function HorarioPage() {
         </div>
       </section>
 
-      <SectionDivider />
-
-      <section className="py-16 md:py-20 bg-[#0B0B0D] text-center">
+      <section className="bg-gold-dark glow-gold-top py-24 md:py-32 text-center">
         <div className="max-w-2xl mx-auto px-4">
           <AnimateIn>
             <h2 className="font-heading text-2xl md:text-4xl font-bold uppercase tracking-tight text-[#F4F3EF]">

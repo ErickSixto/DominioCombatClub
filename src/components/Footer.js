@@ -20,8 +20,8 @@ const navItems = {
 export const Footer = () => {
   const { lang } = useLanguage();
   return (
-    <footer data-testid="site-footer" role="contentinfo" className="bg-[#0B0B0D] relative">
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-[#C9A24A]/45 to-transparent" aria-hidden="true" />
+    <footer data-testid="site-footer" role="contentinfo" className="bg-[#0F0D10] relative">
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-[#C9A24A]/30 to-transparent" aria-hidden="true" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           <AnimateIn delay={0} className="lg:col-span-1">
@@ -61,7 +61,7 @@ export const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   data-testid="footer-whatsapp"
-                  className="flex items-center gap-3 text-[#B9B4A8] hover:text-[#25D366] text-sm transition-colors"
+                  className="flex items-center gap-3 text-[#B9B4A8] hover:text-[#C9A24A] text-sm transition-colors"
                 >
                   <MessageCircle className="w-4 h-4 shrink-0" />
                   +52 999 647 2315
@@ -93,7 +93,7 @@ export const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   data-testid="footer-instagram"
-                  className="flex items-center gap-3 text-[#B9B4A8] hover:text-[#C9A24A] text-sm transition-colors duration-200"
+                  className="flex items-center gap-3 text-[#B9B4A8] hover:text-[#C9A24A] text-sm transition-colors"
                 >
                   <Instagram className="w-4 h-4 shrink-0" />
                   @Dominio_CombatClub

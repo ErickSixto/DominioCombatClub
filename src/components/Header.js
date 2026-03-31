@@ -36,23 +36,17 @@ export const Header = () => {
     <header
       data-testid="main-header"
       role="banner"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out relative ${
-        scrolled
-          ? "bg-[#0B0B0D]/80 backdrop-blur-xl after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-white/15 after:to-transparent"
-          : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 relative ${
+        scrolled ? "h-16 bg-[#0F0D10]/90 backdrop-blur-xl" : "h-20 bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          className={`flex items-center justify-between transition-[height] duration-300 ease-out ${
-            scrolled ? "h-16" : "h-20"
-          }`}
-        >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+        <div className="flex items-center justify-between h-full">
           <Link to="/" className="flex items-center gap-3" data-testid="logo-link">
             <img
               src={LOGO_URL}
               alt="Dominio Combat Club"
-              className="h-10 w-10 md:h-12 md:w-12 rounded-full hover:scale-105 transition-transform"
+              className="h-10 w-10 md:h-12 md:w-12 rounded-full hover:scale-105 transition-transform duration-300"
             />
             <div className="hidden sm:block">
               <span className="font-heading text-lg md:text-xl font-bold uppercase tracking-wider text-[#F4F3EF]">
@@ -133,7 +127,7 @@ export const Header = () => {
                   {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                 </button>
               </SheetTrigger>
-              <SheetContent side="right" className="bg-[#0B0B0D] border-[#2B2D31] w-72">
+              <SheetContent side="right" className="bg-[#0F0D10] border-[#2B2D31] w-72">
                 <SheetTitle className="sr-only">Menu de navegacion</SheetTitle>
                 <div className="flex flex-col gap-1 mt-8">
                   {navLinks.map((link, index) => (

@@ -125,8 +125,7 @@ export default function PlanesPage() {
   const pls = plans[lang];
   return (
     <div data-testid="planes-page" className="pt-20">
-      <section className="relative py-20 md:py-28 bg-[#0B0B0D] overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(201,162,74,0.12),transparent)] pointer-events-none" />
+      <section className="bg-dark-warm relative py-24 md:py-32 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <AnimateIn>
             <span className="font-heading text-sm uppercase tracking-[0.25em] text-[#C9A24A]">{tx.label}</span>
@@ -142,14 +141,14 @@ export default function PlanesPage() {
         </div>
       </section>
 
-      <section className="py-12 md:py-20 bg-[#0B0B0D]">
+      <section className="bg-dark-rich glow-gold-top py-24 md:py-32">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-5">
             {pls.map((plan, i) => (
               <AnimateIn key={plan.tag} delay={i * 150} className="h-full">
                 <div
                   data-testid={`plan-${i + 1}-card`}
-                  className={`h-full p-8 md:p-9 flex flex-col relative overflow-hidden transition-all duration-300 card-gradient-border ${
+                  className={`h-full p-8 md:p-9 flex flex-col relative overflow-hidden transition-all duration-300 ${
                     plan.highlight
                       ? "bg-[#2B2D31] border-2 border-[#C9A24A]/50 animate-border-glow hover:shadow-lg hover:shadow-[#C9A24A]/15 md:-mt-4 md:mb-[-1rem] md:py-12"
                       : "glass-card glass-card-hover hover:-translate-y-1"
@@ -187,13 +186,16 @@ export default function PlanesPage() {
               </AnimateIn>
             ))}
           </div>
+        </div>
+      </section>
 
-          <AnimateIn className="mt-8 block">
+      <section className="bg-cream py-24 md:py-32">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimateIn className="block">
             <div
               data-testid="inscription-card"
-              className="card-gradient-border border border-[#C9A24A]/35 bg-[#1A1B1E]/95 p-8 md:p-10 relative overflow-hidden shadow-[0_0_40px_-12px_rgba(201,162,74,0.25)]"
+              className="card-light p-8 md:p-10 relative overflow-hidden border-l-4 border-l-[#C9A24A]"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-[#C9A24A]/[0.07] via-transparent to-transparent pointer-events-none" />
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-[#C9A24A]/10 flex items-center justify-center shrink-0 border border-[#C9A24A]/20">
@@ -201,10 +203,10 @@ export default function PlanesPage() {
                   </div>
                   <div>
                     <span className="font-heading text-xs uppercase tracking-[0.3em] text-[#C9A24A]">{tx.inscTitle}</span>
-                    <h3 className="font-heading text-2xl uppercase font-bold text-[#F4F3EF] mt-1">
-                      {tx.inscAmount} <span className="text-base font-normal text-[#B9B4A8]">{tx.inscCurrency}</span>
+                    <h3 className="font-heading text-2xl uppercase font-bold text-[#1A1720] mt-1">
+                      {tx.inscAmount} <span className="text-base font-normal text-[#3A3740]">{tx.inscCurrency}</span>
                     </h3>
-                    <p className="text-[#B9B4A8] text-sm mt-2 max-w-md">{tx.inscDesc}</p>
+                    <p className="text-[#3A3740] text-sm mt-2 max-w-md">{tx.inscDesc}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 bg-[#C9A24A]/10 px-4 py-2 border border-[#C9A24A]/25">
@@ -215,26 +217,28 @@ export default function PlanesPage() {
             </div>
           </AnimateIn>
 
-          <div className="mt-6 p-6 bg-white/[0.02] border border-white/5 text-center rounded-sm">
-            <p className="font-heading text-sm uppercase tracking-[0.2em] text-[#C9A24A] mb-2">{tx.disciplines}</p>
-            <p className="text-[#B9B4A8] text-sm">{tx.discList}</p>
-          </div>
+          <AnimateIn delay={100} className="mt-8 block">
+            <div className="card-light p-6 text-center">
+              <p className="font-heading text-sm uppercase tracking-[0.2em] text-[#C9A24A] mb-2">{tx.disciplines}</p>
+              <p className="text-[#3A3740] text-sm">{tx.discList}</p>
+            </div>
+          </AnimateIn>
 
-          <AnimateIn className="mt-6 block">
+          <AnimateIn delay={200} className="mt-6 block">
             <div
               data-testid="private-classes-card"
-              className="glass-card glass-card-hover p-8 md:p-10 border border-white/10"
+              className="card-light p-8 md:p-10"
             >
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
                 <div>
                   <span className="font-heading text-xs uppercase tracking-[0.3em] text-[#C9A24A]">{tx.privateTag}</span>
-                  <h3 className="font-heading text-2xl uppercase font-bold text-[#F4F3EF] mt-2">{tx.privateTitle}</h3>
-                  <p className="text-[#B9B4A8] text-sm mt-2 max-w-md">{tx.privateDesc}</p>
+                  <h3 className="font-heading text-2xl uppercase font-bold text-[#1A1720] mt-2">{tx.privateTitle}</h3>
+                  <p className="text-[#3A3740] text-sm mt-2 max-w-md">{tx.privateDesc}</p>
                 </div>
                 <div className="text-left md:text-right">
-                  <p className="text-[#B9B4A8] text-xs uppercase tracking-wider">{tx.privateFrom}</p>
-                  <span className="font-heading text-3xl font-bold text-[#F4F3EF]">$550</span>
-                  <span className="text-[#B9B4A8] text-sm ml-1">MXN / {lang === "es" ? "hora" : "hour"}</span>
+                  <p className="text-[#3A3740] text-xs uppercase tracking-wider">{tx.privateFrom}</p>
+                  <span className="font-heading text-3xl font-bold text-[#1A1720]">$550</span>
+                  <span className="text-[#3A3740] text-sm ml-1">MXN / {lang === "es" ? "hora" : "hour"}</span>
                 </div>
               </div>
             </div>
@@ -242,8 +246,7 @@ export default function PlanesPage() {
         </div>
       </section>
 
-      <section data-testid="beginner-guide" className="py-16 md:py-24 bg-[#1A1B1E] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_40%_at_100%_0%,rgba(201,162,74,0.06),transparent)] pointer-events-none" />
+      <section data-testid="beginner-guide" className="bg-dark-rich py-24 md:py-32 relative overflow-hidden">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <AnimateIn>
             <div className="flex items-center gap-3 mb-10">
@@ -254,7 +257,7 @@ export default function PlanesPage() {
           <div className="space-y-5">
             {tx.guide.map((g, i) => (
               <AnimateIn key={g.title} delay={i * 120}>
-                <div className="border-l-2 border-[#C9A24A]/30 pl-6 py-1 hover:border-[#C9A24A] transition-colors duration-300 bg-white/[0.02] rounded-r-lg pr-4">
+                <div className="border-l-2 border-[#C9A24A]/30 pl-6 py-3 hover:border-[#C9A24A] transition-colors duration-300 glass-card rounded-r-lg pr-4">
                   <h3 className="font-heading text-lg uppercase font-semibold text-[#F4F3EF]">{g.title}</h3>
                   <p className="text-[#B9B4A8] text-sm mt-1.5 leading-relaxed">{g.text}</p>
                 </div>
@@ -262,7 +265,7 @@ export default function PlanesPage() {
             ))}
           </div>
           <AnimateIn delay={380} className="mt-12 block">
-            <div className="relative p-8 md:p-10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] border border-[#C9A24A]/20 text-center overflow-hidden rounded-sm shadow-[0_24px_48px_-24px_rgba(0,0,0,0.5)]">
+            <div className="relative glass-card p-8 md:p-10 text-center overflow-hidden rounded-sm">
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#C9A24A]/50 to-transparent" />
               <p className="text-[#B9B4A8] text-sm mb-4">{tx.guideNote}</p>
               <p className="font-heading text-xl md:text-2xl lg:text-3xl font-bold text-gradient-gold tracking-tight mb-8 leading-snug">
@@ -281,6 +284,23 @@ export default function PlanesPage() {
             </div>
           </AnimateIn>
         </div>
+      </section>
+
+      <section className="bg-gold-dark glow-gold-top py-24 md:py-32 text-center">
+        <AnimateIn>
+          <div className="max-w-2xl mx-auto px-4">
+            <h2 className="font-heading text-2xl md:text-4xl font-bold uppercase tracking-tight text-[#F4F3EF]">{tx.guideTitle}</h2>
+            <p className="mt-4 text-[#B9B4A8] text-sm md:text-base">{tx.guideNote}</p>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-glow relative z-0 mt-8 inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-sm transition-all duration-300 hover:scale-105"
+            >
+              <MessageCircle className="w-5 h-5" />{tx.guideCta}
+            </a>
+          </div>
+        </AnimateIn>
       </section>
     </div>
   );

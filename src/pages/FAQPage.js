@@ -39,44 +39,51 @@ export default function FAQPage() {
   const faqList = faqs[lang];
   return (
     <div data-testid="faq-page" className="pt-20">
-      <section className="py-16 md:py-24 bg-[#0B0B0D]">
+      <section className="bg-dark-warm py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimateIn>
             <span className="font-heading text-sm uppercase tracking-[0.2em] text-[#C9A24A]">{tx.label}</span>
+          </AnimateIn>
+          <AnimateIn delay={100}>
             <h1 data-testid="faq-title" className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-[#F4F3EF] mt-3">{tx.title}</h1>
+          </AnimateIn>
+          <AnimateIn delay={200}>
             <p className="mt-4 text-[#B9B4A8] text-base md:text-lg max-w-xl">{tx.sub}</p>
           </AnimateIn>
         </div>
       </section>
-      <section className="py-8 md:py-16 bg-[#0B0B0D]">
+
+      <section className="bg-cream-warm py-24 md:py-32">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Accordion type="single" collapsible className="space-y-2">
+          <Accordion type="single" collapsible className="space-y-3">
             {faqList.map((faq, i) => (
               <AnimateIn key={i} delay={i * 80} className="block">
                 <AccordionItem value={`faq-${i}`} data-testid={`faq-item-${i}`}
-                  className="glass-card border-b-0 rounded-sm px-6 hover:border-[#C9A24A]/20 transition-all duration-300">
-                  <AccordionTrigger className="font-heading text-base md:text-lg uppercase tracking-wide text-[#F4F3EF] hover:no-underline hover:text-[#C9A24A] py-5 transition-colors">{faq.question}</AccordionTrigger>
-                  <AccordionContent className="text-[#B9B4A8] text-sm leading-relaxed pb-5">{faq.answer}</AccordionContent>
+                  className="card-light border border-[#1A1720]/10 rounded-sm px-6 hover:border-[#C9A24A]/30 transition-all duration-300">
+                  <AccordionTrigger className="font-heading text-base md:text-lg uppercase tracking-wide text-[#1A1720] hover:no-underline hover:text-[#C9A24A] py-5 transition-colors">{faq.question}</AccordionTrigger>
+                  <AccordionContent className="text-[#3A3740] text-sm leading-relaxed pb-5">{faq.answer}</AccordionContent>
                 </AccordionItem>
               </AnimateIn>
             ))}
           </Accordion>
         </div>
       </section>
-      <div className="bg-[#0B0B0D] px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto">
-          <div className="section-divider" />
-        </div>
-      </div>
-      <section className="py-16 md:py-24 bg-[#1A1B1E] text-center">
+
+      <section className="bg-dark-rich py-24 md:py-32 text-center">
         <div className="max-w-2xl mx-auto px-4">
-          <h2 className="font-heading text-2xl md:text-4xl font-bold uppercase tracking-tight text-[#F4F3EF]">{tx.ctaTitle}</h2>
-          <p className="mt-4 text-[#B9B4A8] text-sm">{tx.ctaSub}</p>
-          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" data-testid="faq-cta"
-            className="btn-glow relative z-10 mt-8 inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-sm transition-all duration-300 hover:scale-105">
-            <MessageCircle className="w-5 h-5" />{tx.ctaBtn}
-          </a>
-          <p className="mt-4 text-[#B9B4A8]/60 text-xs">{tx.ctaNote}</p>
+          <AnimateIn>
+            <h2 className="font-heading text-2xl md:text-4xl font-bold uppercase tracking-tight text-[#F4F3EF]">{tx.ctaTitle}</h2>
+          </AnimateIn>
+          <AnimateIn delay={100}>
+            <p className="mt-4 text-[#B9B4A8] text-sm">{tx.ctaSub}</p>
+          </AnimateIn>
+          <AnimateIn delay={200}>
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" data-testid="faq-cta"
+              className="btn-glow relative z-10 mt-8 inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-sm transition-all duration-300 hover:scale-105">
+              <MessageCircle className="w-5 h-5" />{tx.ctaBtn}
+            </a>
+            <p className="mt-4 text-[#B9B4A8]/60 text-xs">{tx.ctaNote}</p>
+          </AnimateIn>
         </div>
       </section>
     </div>

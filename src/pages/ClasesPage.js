@@ -162,80 +162,86 @@ export default function ClasesPage() {
   const discs = disciplines[lang];
   return (
     <div data-testid="clases-page" className="pt-20">
-      <section className="relative overflow-hidden py-16 md:py-24 bg-[#0B0B0D]">
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#C9A24A]/[0.12] via-transparent to-[#1A1B1E]/80" />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(201,162,74,0.15),transparent)]" />
+      <section className="bg-dark-warm relative overflow-hidden py-24 md:py-32">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <span className="font-heading text-sm uppercase tracking-[0.2em] text-[#C9A24A] opacity-0 animate-fade-in-up">{tx.label}</span>
-          <h1 data-testid="clases-title" className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-[#F4F3EF] mt-3 opacity-0 animate-fade-in-up animation-delay-100">
-            {tx.title}
-          </h1>
-          <p className="mt-4 text-[#B9B4A8] text-base md:text-lg max-w-xl opacity-0 animate-fade-in-up animation-delay-200">{tx.sub}</p>
+          <AnimateIn>
+            <span className="font-heading text-sm uppercase tracking-[0.2em] text-[#C9A24A]">{tx.label}</span>
+          </AnimateIn>
+          <AnimateIn delay={100}>
+            <h1 data-testid="clases-title" className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-[#F4F3EF] mt-3">
+              {tx.title}
+            </h1>
+          </AnimateIn>
+          <AnimateIn delay={200}>
+            <p className="mt-4 text-[#B9B4A8] text-base md:text-lg max-w-xl">{tx.sub}</p>
+          </AnimateIn>
         </div>
       </section>
 
-      {discs.map((d, i) => (
-        <section key={d.id} data-testid={`class-${d.id}`}
-          className={`${i % 2 === 0 ? "bg-[#0B0B0D]" : "bg-[#1A1B1E]"}`}>
-          {i > 0 && <div className="section-divider" aria-hidden="true" />}
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-            <AnimateIn from={i % 2 === 0 ? "left" : "right"} delay={i * 40}>
-              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center`}>
-                <div className={`relative overflow-hidden h-[300px] md:h-[400px] group/img rounded-sm ${i % 2 !== 0 ? "lg:order-2" : ""}`}>
-                  <img
-                    src={d.image}
-                    alt={d.name}
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-[1.08] group-hover/img:-translate-x-3 group-hover/img:translate-y-2"
-                    loading="lazy"
-                  />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#C9A24A]/35 via-[#C9A24A]/10 to-transparent opacity-0 transition-opacity duration-500 group-hover/img:opacity-100" />
-                  <div className="absolute top-4 left-4 bg-[#0B0B0D]/80 backdrop-blur-sm px-3 py-1.5">
-                    <span className="font-heading text-xs uppercase tracking-[0.3em] text-[#C9A24A] font-bold">{d.tag}</span>
+      {discs.map((d, i) => {
+        const isDark = i % 2 === 0;
+        return (
+          <section key={d.id} data-testid={`class-${d.id}`}
+            className={isDark ? "bg-dark-rich" : "bg-cream-warm"}>
+            {i > 0 && <div className="section-divider" aria-hidden="true" />}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+              <AnimateIn from={i % 2 === 0 ? "left" : "right"} delay={i * 40}>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+                  <div className={`relative overflow-hidden h-[300px] md:h-[400px] group/img rounded-sm ${i % 2 !== 0 ? "lg:order-2" : ""}`}>
+                    <img
+                      src={d.image}
+                      alt={d.name}
+                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-[1.08] group-hover/img:-translate-x-3 group-hover/img:translate-y-2"
+                      loading="lazy"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#C9A24A]/35 via-[#C9A24A]/10 to-transparent opacity-0 transition-opacity duration-500 group-hover/img:opacity-100" />
+                    <div className="absolute top-4 left-4 bg-[#0B0B0D]/80 backdrop-blur-sm px-3 py-1.5">
+                      <span className="font-heading text-xs uppercase tracking-[0.3em] text-[#C9A24A] font-bold">{d.tag}</span>
+                    </div>
+                  </div>
+                  <div className={`${isDark ? "glass-card" : "card-light"} rounded-sm p-6 md:p-8 ${i % 2 !== 0 ? "lg:order-1" : ""}`}>
+                    <h2 className={`font-heading text-2xl md:text-4xl font-bold uppercase tracking-tight ${isDark ? "text-[#F4F3EF]" : "text-[#1A1720]"}`}>{d.name}</h2>
+                    <div className="accent-line mt-3 mb-6" />
+                    <div className="space-y-5">
+                      <div className="flex gap-3">
+                        <Users className="w-5 h-5 shrink-0 text-[#C9A24A] mt-0.5" />
+                        <div>
+                          <h3 className={`font-heading text-sm uppercase tracking-wider font-semibold mb-1 ${isDark ? "text-[#F4F3EF]" : "text-[#1A1720]"}`}>{tx.forWho}</h3>
+                          <p className={`text-sm leading-relaxed ${isDark ? "text-[#B9B4A8]" : "text-[#3A3740]"}`}>{d.forWho}</p>
+                        </div>
+                      </div>
+                      <div className="flex gap-3">
+                        <Shield className="w-5 h-5 shrink-0 text-[#C9A24A] mt-0.5" />
+                        <div>
+                          <h3 className={`font-heading text-sm uppercase tracking-wider font-semibold mb-1 ${isDark ? "text-[#F4F3EF]" : "text-[#1A1720]"}`}>{tx.learn}</h3>
+                          <p className={`text-sm leading-relaxed ${isDark ? "text-[#B9B4A8]" : "text-[#3A3740]"}`}>{d.whatYouLearn}</p>
+                        </div>
+                      </div>
+                      <div className="flex gap-3">
+                        <Dumbbell className="w-5 h-5 shrink-0 text-[#C9A24A] mt-0.5" />
+                        <div>
+                          <h3 className={`font-heading text-sm uppercase tracking-wider font-semibold mb-1 ${isDark ? "text-[#F4F3EF]" : "text-[#1A1720]"}`}>{tx.bring}</h3>
+                          <p className={`text-sm leading-relaxed ${isDark ? "text-[#B9B4A8]" : "text-[#3A3740]"}`}>{d.whatToBring}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className={`mt-6 ${isDark ? "glass-card" : "card-light"} border-l-4 border-l-[#C9A24A] pl-5 pr-4 py-4 rounded-sm`}>
+                      <p className={`text-xs uppercase tracking-wider ${isDark ? "text-[#B9B4A8]" : "text-[#3A3740]"}`}>{tx.sched}</p>
+                      <p className={`text-sm font-semibold mt-1 ${isDark ? "text-[#F4F3EF]" : "text-[#1A1720]"}`}>{d.schedule}</p>
+                    </div>
+                    <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" data-testid={`class-${d.id}-cta`}
+                      className={`group mt-6 relative z-0 inline-flex items-center gap-2 btn-glow font-bold text-sm uppercase tracking-wider px-6 py-3 transition-all duration-300 hover:shadow-lg hover:shadow-[#C9A24A]/20 ${isDark ? "bg-[#F4F3EF] text-[#0B0B0D] hover:bg-[#C9A24A]" : "btn-dark"}`}>
+                      <MessageCircle className="w-4 h-4" />{tx.cta}<ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                    </a>
                   </div>
                 </div>
-                <div className={`glass-card rounded-sm p-6 md:p-8 ${i % 2 !== 0 ? "lg:order-1" : ""}`}>
-                  <h2 className="font-heading text-2xl md:text-4xl font-bold uppercase tracking-tight text-[#F4F3EF]">{d.name}</h2>
-                  <div className="accent-line mt-3 mb-6" />
-                  <div className="space-y-5">
-                    <div className="flex gap-3">
-                      <Users className="w-5 h-5 shrink-0 text-[#C9A24A] mt-0.5" />
-                      <div>
-                        <h3 className="font-heading text-sm uppercase tracking-wider font-semibold text-[#F4F3EF] mb-1">{tx.forWho}</h3>
-                        <p className="text-[#B9B4A8] text-sm leading-relaxed">{d.forWho}</p>
-                      </div>
-                    </div>
-                    <div className="flex gap-3">
-                      <Shield className="w-5 h-5 shrink-0 text-[#C9A24A] mt-0.5" />
-                      <div>
-                        <h3 className="font-heading text-sm uppercase tracking-wider font-semibold text-[#F4F3EF] mb-1">{tx.learn}</h3>
-                        <p className="text-[#B9B4A8] text-sm leading-relaxed">{d.whatYouLearn}</p>
-                      </div>
-                    </div>
-                    <div className="flex gap-3">
-                      <Dumbbell className="w-5 h-5 shrink-0 text-[#C9A24A] mt-0.5" />
-                      <div>
-                        <h3 className="font-heading text-sm uppercase tracking-wider font-semibold text-[#F4F3EF] mb-1">{tx.bring}</h3>
-                        <p className="text-[#B9B4A8] text-sm leading-relaxed">{d.whatToBring}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-6 glass-card border-l-4 border-l-[#C9A24A] pl-5 pr-4 py-4 rounded-sm">
-                    <p className="text-[#B9B4A8] text-xs uppercase tracking-wider">{tx.sched}</p>
-                    <p className="text-[#F4F3EF] text-sm font-semibold mt-1">{d.schedule}</p>
-                  </div>
-                  <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" data-testid={`class-${d.id}-cta`}
-                    className="group mt-6 relative z-0 inline-flex items-center gap-2 btn-glow bg-[#F4F3EF] text-[#0B0B0D] hover:bg-[#C9A24A] font-bold text-sm uppercase tracking-wider px-6 py-3 transition-all duration-300 hover:shadow-lg hover:shadow-[#C9A24A]/20">
-                    <MessageCircle className="w-4 h-4" />{tx.cta}<ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-                  </a>
-                </div>
-              </div>
-            </AnimateIn>
-          </div>
-        </section>
-      ))}
+              </AnimateIn>
+            </div>
+          </section>
+        );
+      })}
 
-      <section className="relative overflow-hidden py-16 md:py-24 text-center bg-gradient-to-b from-[#0B0B0D] via-[#14151A] to-[#0B0B0D]">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_100%_80%_at_50%_100%,rgba(201,162,74,0.12),transparent_55%)]" />
+      <section className="bg-gold-dark glow-gold-top relative overflow-hidden py-24 md:py-32 text-center">
         <AnimateIn className="relative z-10">
           <div className="max-w-2xl mx-auto px-4">
             <h2 className="font-heading text-2xl md:text-4xl font-bold uppercase tracking-tight text-[#F4F3EF]">{tx.bottomTitle}</h2>
