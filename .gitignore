@@ -1,5 +1,9 @@
 node_modules/
 build/
+
+# Salesforce CLI / DX (local tooling, not part of this frontend)
+.sfdx/
+
 .env.local
 .env.development.local
 .env.test.local
